@@ -1,13 +1,148 @@
+@import url("fonts.css");
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap");
+
+*,
+*::before,
+*::after {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "SpaceGrotesk", "Lato",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font: "SpaceGrotesk", "Lato", "Open Sans", "Helvetica Neue Light",
+    "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font: "SpaceGrotesk", "Lato", "Open Sans", "Helvetica Neue Light",
+    "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.theme {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  min-height: 100vh;
+}
+.theme-light {
+  background: #f7f8f9;
+  color: #000000;
+}
+
+.theme-dark {
+  background: #181818;
+  color: #ffffff;
+}
+
+.main {
+  background-size: cover;
+  border-radius: 14px 14px 0 0;
+  color: white;
+}
+
+.sun {
+  color: #e7ab4d;
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.current {
+  padding: 15px;
+}
+
+li {
+  width: 12.5%;
+}
+
+.li-dark:hover,
+.li-dark:first-child {
+  background: #f7f8f9;
+  color: #000000;
+}
+
+.li-light:hover,
+.li-light:first-child {
+  background: #181818;
+  color: #ffffff;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  width: 32px;
+  height: 14px;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transform: scale(1.5);
+}
+
+.label-dark {
+  background-color: #3a3a3a;
+}
+
+.label-light {
+  background-color: #4a81c4;
+}
+
+.ball {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  position: absolute;
+  top: 1px;
+  left: 18px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+  transform: translateX(-16px);
+}
+
+.fa-moon,
+.fa-sun {
+  color: orange;
+  font-size: 11px;
+}
+
+.searchbar {
+  width: 70%;
+  margin: 35px auto;
+}
+
+.input-group {
+  border-radius: 2rem;
+}
+
+.input-dark {
+  background-color: #3a3a3a;
+}
+
+.input-light {
+  background-color: #e2e8f0;
+}
+
+.input {
+  background-color: inherit !important;
+  border-radius: inherit !important;
+  border: none !important;
 }

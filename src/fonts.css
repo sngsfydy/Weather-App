@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "SpaceGrotesk";
+
+  src: url("./fonts/Space_Grotesk/SpaceGrotesk-Regular.woff2") format("woff2"),
+    url("./fonts/Space_Grotesk/SpaceGrotesk-Regular.woff") format("woff"),
+    url("./fonts/Space_Grotesk/SpaceGrotesk-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SpaceGrotesk-Light";
+
+  font-weight: 300;
+
+  src: url("./fonts/Space_Grotesk/SpaceGrotesk-Light.woff2") format("woff2"),
+    url("./fonts/Space_Grotesk/SpaceGrotesk-Light.woff") format("woff"),
+    url("./fonts/Space_Grotesk/SpaceGrotesk-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SpaceGrotesk-Medium";
+
+  font-weight: 500;
+
+  src: url("./fonts/Space_Grotesk/SpaceGrotesk-Medium.woff2") format("woff2"),
+    url("./fonts/Space_Grotesk/SpaceGrotesk-Medium.woff") format("woff"),
+    url("./fonts/Space_Grotesk/SpaceGrotesk-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SpaceGrotesk-SemiBold";
+
+  font-weight: 600;
+
+  src: url("./fonts/Space_Grotesk/SpaceGrotesk-SemiBold.woff2") format("woff2"),
+    url("./fonts/Space_Grotesk/SpaceGrotesk-SemiBold.woff") format("woff"),
+    url("./fonts/Space_Grotesk/SpaceGrotesk-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SpaceGrotesk-Bold";
+
+  font-weight: bold;
+
+  src: url("./fonts/Space_Grotesk/SpaceGrotesk-Bold.woff2") format("woff2"),
+    url("./fonts/Space_Grotesk/SpaceGrotesk-Bold.woff") format("woff"),
+    url("./fonts/Space_Grotesk/SpaceGrotesk-Bold.ttf") format("truetype");
+}
