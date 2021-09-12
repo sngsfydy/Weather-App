@@ -6,7 +6,7 @@ import cloudy from "../images/cloudy.svg";
 import day_rain from "../images/day-rain.svg";
 import night_rain from "../images/night-rain.svg";
 
-export function setSource(icon) {
+export function setIcon(icon) {
   switch (icon) {
     case "clear-day":
       return day;

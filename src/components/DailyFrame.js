@@ -1,37 +1,30 @@
-import React, { useState, useContext } from "react";
-import { C2F } from "../utils/TempretureConvertor";
-import { customGetDay, addZero } from "./Date";
-import { setSource } from "./Icons";
-import { WeatherUnitContext } from "./WeatherUnitContext";
+import React, { useContext } from "react";
+import { calculatedTemp } from "../utils/TempretureCalculater";
+import { customGetDay, displayTime } from "../utils/DateTimeHandler";
+import { setIcon } from "../utils/IconSetter";
+import { WeatherUnitContext } from "../contexts/WeatherUnitContext";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { themeSetter } from "../utils/ThemeSetter";
 
-function displayTime(time) {
-  const date = new Date(time * 1000);
-  return date.getHours() + ":" + addZero(date.getMinutes());
-}
-
-function computedTempValue(unit, temp) {
-  return unit.unit === "C" ? temp : C2F(temp);
-}
-
-function Daily({ day, icon, max, min, sunrise, sunset }) {
+function DailyFrame({ day, icon, max, min, sunrise, sunset }) {
+  const { background } = useContext(ThemeContext);
   const unit = useContext(WeatherUnitContext);
-  console.log("unit", unit);
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h6 style={{ marginBottom: "0px" }}>{customGetDay(day).split("", 3)}</h6>
-      <img src={setSource(icon)} alt="alt" />
-      <div style={{ marginBottom: "6px" }}>
-        <span style={{ fontSize: "16px" }}>
-          {computedTempValue(unit, max)}
+    <div className={`item-${themeSetter(background)}`}>
+      <h6>{customGetDay(day).split("", 3)}</h6>
+      <img src={setIcon(icon)} alt="weather icon" />
+      <div className="temp">
+        <span className="max">
+          {calculatedTemp(Math.floor(max), unit)}
           <sup>&#176;</sup>
         </span>
-        <span style={{ fontSize: "12px", marginLeft: "15px" }}>
-          {Math.floor(min)}
+        <span className="min">
+          {calculatedTemp(Math.floor(min), unit)}
           <sup>&#176;</sup>
         </span>
       </div>
-      <p style={{ fontSize: "14px", marginBottom: "8px" }}>
+      <p className="sunrise">
         <svg
           className="sun"
           stroke="currentColor"
@@ -69,9 +62,9 @@ function Daily({ day, icon, max, min, sunrise, sunset }) {
 	C23.08,15.88,22.99,15.64,22.99,15.36z"
           ></path>
         </svg>
-        {displayTime(sunrise)}
+        {displayTime(sunrise, "daily")}
       </p>
-      <p style={{ fontSize: "14px" }}>
+      <p className="sunset">
         <svg
           className="sun"
           stroke="currentColor"
@@ -109,10 +102,10 @@ function Daily({ day, icon, max, min, sunrise, sunset }) {
 	c-0.19,0.2-0.42,0.3-0.69,0.3h-2.32c-0.26,0-0.48-0.1-0.66-0.29C22.99,15.99,22.9,15.75,22.9,15.47z"
           ></path>
         </svg>
-        {displayTime(sunset)}
+        {displayTime(sunset, "daily")}
       </p>
     </div>
   );
 }
 
-export default Daily;
+export default DailyFrame;

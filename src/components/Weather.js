@@ -1,59 +1,73 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import {
+  WeatherUnitContext,
+  weatherUnit,
+} from "../contexts/WeatherUnitContext";
+import { bgSetter } from "../utils/BackgroundSetter";
+import PrimaryInfo from "./PrimaryInfo";
 import CurrentWeatherInfo from "./CurrentWeatherInfo";
+import CurrentWeatherInfoDetails from "./CurrentWeatherInfoDetails";
 import HourlyWeatherInfo from "./HourlyWeatherInfo";
 import DailyWeatherInfo from "./DailyWeatherInfo";
-import clear_day from "../images/clear-day.jpg";
-import clear_night from "../images/clear-night.jpg";
-import cloudy_day from "../images/cloudy-day.jpg";
-import cloudy_night from "../images/cloudy-night.jpg";
-import dusk from "../images/dusk.jpg";
 
 function Weather({ info }) {
-  console.log(info);
+  const {
+    currentConditions: { conditions },
+    timezone,
+  } = info;
+  const [WeatherUnit, setWeatherUnit] = useState(weatherUnit.unit);
+  const [windUnit, setWindUnit] = useState("kmph");
+  const [date, setDate] = useState(new Date());
+  const [current, setCurrent] = useState(
+    date.toLocaleString("en-US", { timeZone: timezone })
+  );
 
-  const hour = new Date(info.currentConditions.datetimeEpoch * 1000).getHours();
-  const condition = info.currentConditions.conditions;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDate(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  });
+
+  useEffect(() => {
+    setCurrent(date.toLocaleString("en-US", { timeZone: timezone }));
+  }, [date, timezone]);
+
+  function handleCelciusClick() {
+    setWindUnit("kmph");
+    setWeatherUnit("C");
+  }
+
+  function handleFarenheitClick() {
+    setWindUnit("mph");
+    setWeatherUnit("F");
+  }
 
   return (
     <div
-      style={
-        hour < 19
-          ? condition === "Clear"
-            ? { backgroundImage: `url(${clear_day})` }
-            : { backgroundImage: `url(${cloudy_day})` }
-          : hour > 19
-          ? condition === "Clear"
-            ? { backgroundImage: `url(${clear_night})` }
-            : { backgroundImage: `url(${cloudy_night})` }
-          : { backgroundImage: `url(${dusk})` }
-      }
+      style={{ backgroundImage: bgSetter(conditions, current) }}
       className="main"
     >
-      <CurrentWeatherInfo
-        country={info.resolvedAddress}
-        date={info.currentConditions.datetime}
-        icon={info.currentConditions.icon}
-        temp={info.currentConditions.temp}
-        humidity={info.currentConditions.humidity}
-        feelslike={info.currentConditions.feelslike}
-        wind={info.currentConditions.windspeed}
-        windDir={info.currentConditions.winddir}
-        condition={info.currentConditions.conditions}
-      />
-
-      {console.log("info", info)}
-
-      {info && (
-        <div>
-          <HourlyWeatherInfo
-            info={info.days[0].hours}
-            current={info.currentConditions.datetimeEpoch}
+      <WeatherUnitContext.Provider value={WeatherUnit}>
+        <PrimaryInfo info={info.resolvedAddress} current={current} />
+        <div id="current">
+          <CurrentWeatherInfo
+            info={info.currentConditions}
+            onCelciusClick={handleCelciusClick}
+            onFarenheitClick={handleFarenheitClick}
           />
-          <DailyWeatherInfo info={info.days} />
+          <CurrentWeatherInfoDetails
+            info={info.currentConditions}
+            windUnit={windUnit}
+          />
         </div>
-      )}
+        <HourlyWeatherInfo info={info.days[0].hours} current={current} />
+        <DailyWeatherInfo info={info.days} />
+      </WeatherUnitContext.Provider>
     </div>
   );
 }
+
+Weather.contextType = WeatherUnitContext;
 
 export default Weather;

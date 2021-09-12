@@ -1,26 +1,21 @@
-import React, { useContext } from "react";
-import Daily from "./Daily";
-import { ThemeContext, themeSetter } from "./ThemeContext";
-import { WeatherUnitContext } from "./WeatherUnitContext";
+import React from "react";
+import DailyFrame from "./DailyFrame";
 
 function DailyWeatherInfo({ info }) {
-  const { background } = useContext(ThemeContext);
-
   return (
-    <ul style={{ display: "flex" }}>
+    <div className="daily">
       {info.slice(0, 8).map((item) => (
-        <li className={`li-${themeSetter(background)}`} key={item.datetime}>
-          <Daily
-            day={new Date(item.datetimeEpoch * 1000).getDay()}
-            icon={item.icon}
-            max={item.tempmax}
-            min={item.tempmin}
-            sunrise={item.sunriseEpoch}
-            sunset={item.sunsetEpoch}
-          />
-        </li>
+        <DailyFrame
+          key={item.datetime}
+          day={new Date(item.datetimeEpoch * 1000).getDay()}
+          icon={item.icon}
+          max={item.tempmax}
+          min={item.tempmin}
+          sunrise={item.sunrise}
+          sunset={item.sunset}
+        />
       ))}
-    </ul>
+    </div>
   );
 }
 

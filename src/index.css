@@ -56,22 +56,134 @@ code {
   margin-right: 10px;
 }
 
-.current {
-  padding: 15px;
+#primary {
+  padding: 20px;
+}
+#primary h5 {
+  font-weight: 400;
+}
+#current {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 40px;
+}
+#current > .temp {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  text-align: center;
+}
+#current > .temp > div:first-child > img {
+  width: 130px;
+  height: 130px;
+}
+#current > .temp > div:last-child {
+  display: flex;
+}
+#current > .temp > div:last-child > h1 {
+  font-size: 65px;
+  margin-bottom: 30px;
+}
+#current > .temp > div:last-child > h1 > sup {
+  font-weight: lighter;
+}
+#current > .temp > div:last-child > .weather-unit {
+  margin-left: 8px;
+}
+#current > .temp > div:last-child > .weather-unit > span {
+  font-size: 20px;
+  padding: 3px;
+}
+#current > .temp > div:last-child > .weather-unit > span:nth-child(2) {
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0;
+  margin: 0 3px;
+}
+#current > .temp > div:last-child > .weather-unit > span.active {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  position: relative;
+}
+#current > .temp > div:last-child > .weather-unit > span.active::before {
+  content: " \005F";
+  width: 100%;
+  position: absolute;
+  top: 5px;
+  left: 0px;
+}
+#current > .temp > div:last-child > .weather-unit > span.inActive {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-li {
+#current > .detail {
+  margin-right: 150px;
+  margin-top: 35px;
+}
+#current > .detail > p {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 8px 0;
+}
+#current > .detail > p > img {
+  margin-left: 4px;
+}
+#current > .detail > p > strong {
+  margin-left: 5px;
+}
+.hourly > div {
+  text-align: center;
+}
+.hourly > div p {
+  margin: 3px;
+}
+.hourly > div .temp {
+  font-size: 16px;
+}
+.hourly > div .feelslike {
+  font-size: 12px;
+}
+.hourly > div .time {
+  font-size: 14px;
+}
+.daily {
+  display: flex;
+  margin-top: 30px;
+}
+.daily > div {
   width: 12.5%;
+  text-align: center;
 }
-
-.li-dark:hover,
-.li-dark:first-child {
+.daily > div h6 {
+  margin-bottom: 0;
+}
+.daily > div .temp {
+  margin-bottom: 6px;
+}
+.daily > div .temp > .max {
+  font-size: 16px;
+}
+.daily > div .temp > .min {
+  font-size: 12px;
+  margin-left: 15px;
+}
+.daily > div .sunrise {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.daily > div .sunset,
+.sunset {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.item-dark:hover,
+.item-dark:first-child {
   background: #f7f8f9;
   color: #000000;
 }
 
-.li-light:hover,
-.li-light:first-child {
+.item-light:hover,
+.item-light:first-child {
   background: #181818;
   color: #ffffff;
 }
